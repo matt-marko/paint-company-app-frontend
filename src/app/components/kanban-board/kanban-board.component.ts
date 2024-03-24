@@ -108,8 +108,6 @@ export class KanbanBoardComponent {
         this.loadPaints(paints);
         this.updateIsSuccess = true;
         this.isLoading = false;
-
-        console.log(this.updateIsSuccess)
       }, (error) => {
         this.errorHasOccurred = true;
         this.isLoading = false;
