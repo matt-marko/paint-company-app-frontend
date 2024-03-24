@@ -19,6 +19,15 @@
     font-size: 14px;
 }
 
+.button-container {
+    margin-top: 12px;
+}
+
+button {
+    margin-right: 12px;
+}
+
+/* CSS for the Angular Material drag & drop Component Dev Kiit */
 .paint-box.cdk-drag-disabled {
     background: #ccc;
     cursor: not-allowed;
@@ -47,13 +56,5 @@
   
 .paint-list.cdk-drop-list-dragging .paint-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.button-container {
-    margin-top: 12px;
-}
-
-button {
-    margin-right: 12px;
 }
 
