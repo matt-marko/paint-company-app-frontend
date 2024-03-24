@@ -16,6 +16,11 @@ export class PaintStockService {
     return this.http.get<Paint[]>(this.apiUrl);
   }
 
+  /**
+   * Updates the list of paints on the server.
+   * @param paints The array of Paint objects to update.
+   * @returns An observable that emits the updated array of Paint objects.
+   */
   updatePaints(paints: Paint[]): Observable<Paint[]> {
     return this.http.put<Paint[]>(this.apiUrl, paints);
   }

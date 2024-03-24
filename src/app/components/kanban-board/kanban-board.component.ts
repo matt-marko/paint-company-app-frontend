@@ -16,10 +16,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./kanban-board.component.css']
 })
 export class KanbanBoardComponent {
+  // Paint stock corresponding to what is in the database
   outOfStock: string[] = [];
   runningLow: string[] = [];
   available: string[] = [];
 
+  // Paint stock corresponding to current view
   outOfStockCurrent: string[] = [];
   runningLowCurrent: string[] = [];
   availableCurrent: string[] = [];
@@ -27,6 +29,7 @@ export class KanbanBoardComponent {
   changesMade: boolean = false;
   isLoading: boolean = true;
   errorHasOccurred: boolean = false;
+  updateIsSuccess: boolean = false;
 
   currentUser: User = {} as User;
 
@@ -48,6 +51,7 @@ export class KanbanBoardComponent {
     this.currentUser = this.userService.getCurrentUser();
   }
 
+  /* Handle drag and drop events for the paint items */
   drop(event: CdkDragDrop<string[]>) {
     this.changesMade = true;
 
@@ -73,6 +77,8 @@ export class KanbanBoardComponent {
 
   saveChanges(): void {
     this.changesMade = false;
+    this.updateIsSuccess = false;
+    this.isLoading = true;
 
     let paintPayload: Paint[] = [];
 
@@ -97,37 +103,48 @@ export class KanbanBoardComponent {
       });
     });
 
-    this.paintStockService.updatePaints(paintPayload).subscribe(paints => {
-      this.loadPaints(paints);
-    });
+    this.paintStockService.updatePaints(paintPayload)
+      .subscribe(paints => {
+        this.loadPaints(paints);
+        this.updateIsSuccess = true;
+        this.isLoading = false;
+
+        console.log(this.updateIsSuccess)
+      }, (error) => {
+        this.errorHasOccurred = true;
+        this.isLoading = false;
+      }, () => {
+        this.isLoading = false;
+      });
   }
 
+  /**  
+   * Updates the view with the updated paints
+   */
   loadPaints(paints: Paint[]): void {
     this.outOfStockCurrent = [];
     this.runningLowCurrent = [];
     this.availableCurrent = [];
 
-    this.paintStockService.getPaints().subscribe(paints => {
-      paints.forEach(paint => {
-        switch(paint.status) {
-          case 'out of stock':
-            this.outOfStockCurrent.push(paint.colour);
-            break;
-          case 'running low':
-            this.runningLowCurrent.push(paint.colour);
-            break;
-          case 'available':
-            this.availableCurrent.push(paint.colour);
-            break;
-          default:
-            break;
-        }
-      });
-
-      this.outOfStock = [...this.outOfStockCurrent];
-      this.runningLow = [...this.runningLowCurrent];
-      this.available = [...this.availableCurrent];
+    paints.forEach(paint => {
+      switch(paint.status) {
+        case 'out of stock':
+          this.outOfStockCurrent.push(paint.colour);
+          break;
+        case 'running low':
+          this.runningLowCurrent.push(paint.colour);
+          break;
+        case 'available':
+          this.availableCurrent.push(paint.colour);
+          break;
+        default:
+          break;
+      }
     });
+
+    this.outOfStock = [...this.outOfStockCurrent];
+    this.runningLow = [...this.runningLowCurrent];
+    this.available = [...this.availableCurrent];
   }
 
   handleLogout(): void {
@@ -137,6 +154,9 @@ export class KanbanBoardComponent {
   openSettings(): void {
     this.isLoading = true;
 
+    // Get all the users and their current permissions
+    // before going to the settings page in order to be
+    // able to quickly update them.
     this.userService.requestAllUsers()
       .subscribe(users => {
         this.userService.setAllUsers(users);

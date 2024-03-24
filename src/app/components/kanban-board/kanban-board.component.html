@@ -73,6 +73,9 @@
             <mat-chip disableRipple *ngIf="errorHasOccurred">
                 An error has occurred. Please log in later.
             </mat-chip>
+            <mat-chip disableRipple *ngIf="updateIsSuccess && !changesMade">
+                Save successful
+            </mat-chip>
         </div>
     </div>
 

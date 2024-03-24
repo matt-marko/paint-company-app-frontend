@@ -6,7 +6,16 @@
     overflow: hidden;
     display: block;
 }
-  
+
+.button-container {
+    margin-top: 12px;
+}
+
+button {
+    margin-right: 12px;
+}
+
+/* CSS for Angular Material's drag & drop Component Dev Kit */  
 .paint-box {
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
@@ -45,22 +54,9 @@
   
 .example-box:last-child {
     border: none;
+    background-color: black;
 }
   
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
-.mat-grid-list {
-    margin-left: 50px;
-    margin-right: 50px; 
-}
-
-.button-container {
-    margin-top: 12px;
-}
-
-button {
-    margin-right: 12px;
-}
-

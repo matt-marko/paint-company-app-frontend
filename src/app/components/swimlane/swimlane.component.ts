@@ -7,5 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class SwimlaneComponent {
   @Input() header: string = 'Item';
-  @Input() items: any;
 }
