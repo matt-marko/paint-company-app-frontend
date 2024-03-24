@@ -1,21 +1,10 @@
 .paint-list {
-    border: solid 1px #ccc;
-    min-height: 60px;
-    background: white;
+    min-height: 400px;
     border-radius: 4px;
     overflow: hidden;
     display: block;
 }
-
-.button-container {
-    margin-top: 12px;
-}
-
-button {
-    margin-right: 12px;
-}
-
-/* CSS for Angular Material's drag & drop Component Dev Kit */  
+  
 .paint-box {
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
@@ -52,11 +41,19 @@ button {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
   
-.example-box:last-child {
+.paint-box:last-child {
     border: none;
-    background-color: black;
 }
   
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.paint-list.cdk-drop-list-dragging .paint-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.button-container {
+    margin-top: 12px;
+}
+
+button {
+    margin-right: 12px;
+}
+
