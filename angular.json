@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "paint-company-app-frontend": {
+    "paint-company-matt": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/paint-company-app-frontend",
+            "outputPath": "dist/paint-company-matt",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "paint-company-app-frontend:build:production"
+              "browserTarget": "paint-company-matt:build:production"
             },
             "development": {
-              "browserTarget": "paint-company-app-frontend:build:development"
+              "browserTarget": "paint-company-matt:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "paint-company-app-frontend:build"
+            "browserTarget": "paint-company-matt:build"
           }
         },
         "test": {

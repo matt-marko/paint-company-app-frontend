@@ -23,4 +23,4 @@ jobs:
 
       - name: Deploy to Netlify
         run: netlify deploy --prod --auth "${{ secrets.NETLIFY_ACCESS_TOKEN }}" \
-              --dir=dist/paint-company-app-frontend --site="paint-company-matt"
+              --dir=dist/paint-company-matt --site="paint-company-matt"
