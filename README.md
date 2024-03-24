@@ -30,4 +30,4 @@ The source code is contained within the `src/app` folder. Within are the followi
 
 ## DevOps Pipeline
 
-A CI pipeline exists for this projects, which uses GitHub Actions. It deploys the application to Netlify. The pipeline runs when making changes to the main branch, or when ran manually. The workflow file may be found in `.github/workflows/main.yml`.
+A CI pipeline exists for this project, which uses GitHub Actions. It deploys the application to Netlify. The pipeline runs when making changes to the main branch, or when ran manually. The workflow file may be found in `.github/workflows/main.yml`.
