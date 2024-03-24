@@ -13,6 +13,7 @@ export class LoginComponent {
   userSelected: boolean = false;
   isLoading: boolean = false;
   errorHasOccurred: boolean = false;
+  userNotAllowed: boolean = false;
 
   userForm = new FormControl('');
 
@@ -29,11 +30,16 @@ export class LoginComponent {
     if (this.userForm.value) {
       this.errorHasOccurred = false;
       this.isLoading = true;
+      this.userNotAllowed = false;
 
       this.userService.requestUser(this.userForm.value)
         .subscribe((user: User) => {
-          this.userService.setCurrentUser(user);
-          this.router.navigate(['/board']);
+          if (user.permission === 'disabled') {
+            this.userNotAllowed = true;
+          } else {
+            this.userService.setCurrentUser(user);
+            this.router.navigate(['/board']);
+          }
         }, (error) => {
           this.errorHasOccurred = true;
           this.isLoading = false;

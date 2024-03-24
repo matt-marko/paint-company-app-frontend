@@ -15,6 +15,7 @@
     <div class="radio-container" *ngIf="selectedUser?.name && selectedUser.name !== 'Adam'">
         <mat-radio-group 
             [(ngModel)]="selectedUser.permission">
+            <mat-radio-button value="disabled">Disabled</mat-radio-button>
             <mat-radio-button value="view">View</mat-radio-button>
             <mat-radio-button value="edit">Edit</mat-radio-button>
             <mat-radio-button value="admin">Admin</mat-radio-button>
