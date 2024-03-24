@@ -27,7 +27,7 @@ button {
     margin-right: 12px;
 }
 
-/* CSS for the Angular Material drag & drop Component Dev Kiit */
+/* CSS for the Angular Material drag & drop Component Dev Kit */
 .paint-box.cdk-drag-disabled {
     background: #ccc;
     cursor: not-allowed;
