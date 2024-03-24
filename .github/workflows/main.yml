@@ -1,0 +1,26 @@
+name: Deploy to Netlify
+on:
+  workflow_dispatch: 
+  push:
+    branches:
+      main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Deploy to Netlify
+        run: netlify deploy --prod --auth "${{ secrets.NETLIFY_ACCESS_TOKEN }}" \
+              --dir=dist/paint-company-app-frontend --site="paint-company-matt"

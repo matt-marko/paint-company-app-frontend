@@ -1,0 +1,42 @@
+<div class="main-container">
+    <h1> Admin settings </h1> 
+    <h2> Select a user to assign roles to: </h2> 
+
+    <mat-form-field>
+        <mat-label>User</mat-label>
+        <mat-select [formControl]="userForm">
+            <mat-option value="John">John</mat-option>
+            <mat-option value="Jane">Jane</mat-option>
+            <mat-option value="Adam">Adam</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <div class="radio-container" *ngIf="selectedUser?.name && selectedUser.name !== 'Adam'">
+        <mat-radio-group 
+            [(ngModel)]="selectedUser.permission">
+            <mat-radio-button value="view">View</mat-radio-button>
+            <mat-radio-button value="edit">Edit</mat-radio-button>
+            <mat-radio-button value="admin">Admin</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <h2 *ngIf="selectedUser.name === 'Adam'">This user's permissions may not be changed.</h2>
+    <br>
+    <button 
+        *ngIf="selectedUser?.name && selectedUser.name !== 'Adam'"
+        mat-raised-button
+        color="primary"
+        (click)="updatePermission()">
+        Update Permission
+    </button>
+    <br>
+    <button
+        mat-raised-button
+        color="accent"
+        (click)="handleBackClick()">
+        Back
+    </button>
+
+    <h2 *ngIf="isLoading">Loading...</h2>
+    <h2 *ngIf="errorHasOccurred">An error has occured.<br>Please try again later.</h2>
+    <h2 *ngIf="updateIsSuccess">Permissions for {{ selectedUser.name }} succesfully updated.</h2>
+</div>

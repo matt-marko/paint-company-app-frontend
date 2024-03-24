@@ -1,0 +1,22 @@
+<div class="main-container">
+    <div>
+        <mat-form-field>
+            <mat-label>User</mat-label>
+            <mat-select [formControl]="userForm">
+                <mat-option value="John">John</mat-option>
+                <mat-option value="Jane">Jane</mat-option>
+                <mat-option value="Adam">Adam</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button 
+            mat-raised-button 
+            color="primary"
+            [disabled]="!userSelected"
+            (click)="handleLogin()">
+            Login
+        </button>
+        <br>
+        <h2 *ngIf="isLoading">Loading...</h2>
+        <h2 *ngIf="errorHasOccurred">An error has occurred. <br> Please try again later.</h2>
+    </div>
+</div>

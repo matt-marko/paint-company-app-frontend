@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <app-swimlane header="Out of Stock">
+                <div
+                    cdkDropList
+                    #outOfStockList="cdkDropList"
+                    [cdkDropListData]="outOfStock"
+                    [cdkDropListConnectedTo]="[runningLowList, availableList]"
+                    class="paint-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div 
+                        *ngFor="let item of outOfStock" 
+                        class="paint-box" 
+                        cdkDrag
+                        [cdkDragDisabled]="currentUser.permission === 'view'">
+                        {{item}}
+                    </div>
+                </div>
+            </app-swimlane>
+        </div>
+        <div class="col-md-4">
+            <app-swimlane header="Running Low">
+                <div
+                    cdkDropList
+                    #runningLowList="cdkDropList"
+                    [cdkDropListData]="runningLow"
+                    [cdkDropListConnectedTo]="[outOfStockList, availableList]"
+                    class="paint-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div 
+                        *ngFor="let item of runningLow" 
+                        class="paint-box"
+                        cdkDrag 
+                        [cdkDragDisabled]="currentUser.permission === 'view'">
+                        {{item}}
+                    </div>
+                </div>
+            </app-swimlane>
+        </div>
+        <div class="col-md-4">
+            <app-swimlane header="Available">
+                <div
+                    cdkDropList
+                    #availableList="cdkDropList"
+                    [cdkDropListData]="available"
+                    [cdkDropListConnectedTo]="[outOfStockList, runningLowList]"
+                    class="paint-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div 
+                        *ngFor="let item of available" 
+                        class="paint-box" 
+                        cdkDrag
+                        [cdkDragDisabled]="currentUser.permission === 'view'">
+                        {{item}}
+                    </div>
+                </div>
+            </app-swimlane>
+        </div>
+    </div>
+
+    <div class="row chip-row">
+        <div col="col-md-12">
+            <mat-chip disableRipple>
+                Logged in as {{ currentUser.name }}
+            </mat-chip>
+            <mat-chip disableRipple>
+                Role: {{ currentUser.permission }}
+            </mat-chip>
+            <mat-chip disableRipple *ngIf="isLoading">
+                Loading...
+            </mat-chip>
+            <mat-chip disableRipple *ngIf="errorHasOccurred">
+                An error has occurred. Please log in later.
+            </mat-chip>
+        </div>
+    </div>
+
+    <div class="row button-container">
+        <div col="col-md-12">
+            <button 
+                mat-raised-button 
+                color="primary" 
+                [disabled]="!changesMade"
+                (click)="saveChanges()">
+                Save Changes
+            </button>
+            <button
+                mat-raised-button 
+                color="accent"
+                [disabled]="!changesMade" 
+                (click)="cancelChanges()">
+                Cancel
+            </button>
+            <button
+                mat-raised-button
+                color="warn"
+                (click)="handleLogout()">
+                Logout
+            </button>
+            <button
+                mat-raised-button
+                *ngIf="currentUser.permission === 'admin'"
+                color="primary"
+                (click)="openSettings()">
+                Admin Settings
+            </button>
+        </div>
+    </div>
+</div>

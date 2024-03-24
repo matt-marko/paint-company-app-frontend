@@ -1,0 +1,18 @@
+h1 {
+    color: aquamarine;
+    text-align: center;
+}
+  
+#header {
+    height: 60px;
+    background-color: #9c27b0;
+    margin-bottom: 12px;
+    padding-top: 20px;
+}
+
+#footer {
+    height: 60px;
+    background-color: #9c27b0;
+    position: fixed;
+    bottom: 0;
+}
