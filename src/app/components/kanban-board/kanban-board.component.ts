@@ -51,7 +51,9 @@ export class KanbanBoardComponent {
     this.currentUser = this.userService.getCurrentUser();
   }
 
-  /* Handle drag and drop events for the paint items */
+  /** 
+   * Handle drag and drop events for the paint items
+   */
   drop(event: CdkDragDrop<string[]>) {
     this.changesMade = true;
 
