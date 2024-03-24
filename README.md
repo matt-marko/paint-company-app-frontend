@@ -20,7 +20,7 @@ This app was developed to satisfy the requirements of _A Paint Company_. It lets
 
 ## Project Structure
 
-The source code is contained within the `src/app` folder. Within arethe following folders:
+The source code is contained within the `src/app` folder. Within are the following folders:
 
 - The `components` folder contains the Angular UI components.
 - The `services` folder contains the Angular services, which are responsible for handling data sent to and from the backend.
