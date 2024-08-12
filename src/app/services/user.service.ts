@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl: string = environment.apiUrl + 'user';
+  apiUrl: string = environment.apiUrl + 'users';
 
   private currentUser: User = {} as User;
   private allUsers: User[] = [];
